@@ -59,7 +59,10 @@ st.text("")
 left_column, center, right_column = st.beta_columns(3)
 if center.button('predict!'):
     st.text("")
-    if classifier.predict(data) == 1:
-        st.write('Cool! 😃 Slot with these features should show good results!')
+    if data.values.sum() > 3:
+        st.write("Too much features for one slot, try to chose less!")
     else:
-        st.write('Oh No! 😟 Probably, you need to consider other features...')
+        if classifier.predict(data) == 1:
+            st.write('Cool! 😃 Slot with these features should show good results!')
+        else:
+            st.write('Oh No! 😟 Probably, you need to consider other features...')
